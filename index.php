@@ -12,4 +12,5 @@ $pickLock = new \Alex\Services\PickLock();
 //$pickLock->unlock(new Lock1())->varDumpLockResults();
 //$pickLock->unlock(new Lock2())->varDumpLockResults();
 //$pickLock->unlock(new Lock2())->varDumpLockResults();
+//$pickLock->unlock(new Lock1())->unlock(new Lock2())->varDumpLockResults();
 $pickLock->unlockAllLocks()->varDumpLockResults();
