@@ -13,5 +13,5 @@ class HardLock3 extends Lock
     /**
      * @var string
      */
-    private $key = 'db3d405b10675998c030223177d42e71b4e7a312';
+    public $key = 'db3d405b10675998c030223177d42e71b4e7a312';
 }

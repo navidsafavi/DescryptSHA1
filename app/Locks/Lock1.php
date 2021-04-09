@@ -10,5 +10,8 @@ use Alex\Lib\Lock;
  */
 class Lock1 extends Lock
 {
-	private $key = '520104c03ea9af438104b10a25423696afaa845a';
+    /**
+     * @var string
+     */
+    public $key = '520104c03ea9af438104b10a25423696afaa845a';
 }
