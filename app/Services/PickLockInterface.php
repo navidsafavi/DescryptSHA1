@@ -1,6 +1,8 @@
 <?php
 
-namespace Alex\Lib;
+namespace Alex\Services;
+
+use Alex\Lib\Lock;
 
 interface PickLockInterface
 {
