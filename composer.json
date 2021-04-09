@@ -1,0 +1,16 @@
+{
+    "name": "navid/picklock_original",
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "Alex\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "navid",
+            "email": "navidsafavico@gmail.com"
+        }
+    ],
+    "require": {}
+}
