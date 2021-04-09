@@ -3,7 +3,9 @@
 namespace Alex\Services;
 
 use Alex\Lib\Lock;
-use Alex\Lib\PickLockInterface;
+use Alex\Locks\HardLock3;
+use Alex\Locks\Lock1;
+use Alex\Locks\Lock2;
 
 /**
  * This class has to call out the lock objects by name. i.e. 'lock1' should call
@@ -66,18 +68,45 @@ class PickLock implements PickLockInterface
         'y'
     );
 
-    public function unlock(Lock $lock)
+    /**
+     * @param Lock $lock
+     *
+     * @return $this
+     */
+    public function unlock(Lock $lock): self
     {
-        // TODO: Implement unlock() method.
+        $lock->setSymbols($this->symbols)->setMaxLength(self::maxSymbols)->run();
+
+        $result = [
+            'password'             => $lock->password,
+            'millisecondsToUnlock' => $lock->time_to_unlock,
+            'falseAttempt'         => $lock->false_attempt
+        ];
+
+        $this->setNewLock(getClassName($lock), $result);
+
+        return $this;
     }
 
-    public function unlockAllLocks()
+    /**
+     * @return $this
+     */
+    public function unlockAllLocks(): self
     {
-        // TODO: Implement unlockAllLocks() method.
+        $this->unlock(new Lock1())->unlock(new Lock2())->unlock(new HardLock3());
+
+        return $this;
     }
 
     public function varDumpLockResults()
     {
-        // TODO: Implement varDumpLockResults() method.
+        var_dump(self::$locks);
     }
+
+    private function setNewLock($keyLock, $result)
+    {
+        $newLock[$keyLock] = $result;
+        self::$locks       = array_merge(self::$locks, $newLock);
+    }
+
 }
